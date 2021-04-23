@@ -42,14 +42,6 @@ func CreateCommand(s *discordgo.Session, m *discordgo.MessageCreate) {
 				Title:       "Your avatar",
 				Color:       7,
 				Description: "Hello everyone",
-				Video: &discordgo.MessageEmbedVideo{
-					URL:    "https://www.youtube.com/watch?v=somevideo",
-					Width:  50,
-					Height: 50,
-				},
-				Author: &discordgo.MessageEmbedAuthor{
-					Name: m.Author.Username,
-				},
 			}
 
 			s.ChannelMessageSendEmbed(m.ChannelID, &result)
