@@ -16,4 +16,12 @@ func Start() {
 	db.SetConnMaxLifetime(time.Minute * 3)
 	db.SetMaxOpenConns(10)
 	db.SetMaxIdleConns(10)
+
+	query, err := db.Prepare("INSERT INTO users VALUES (?)")
+
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	query.Exec("chip")
 }
