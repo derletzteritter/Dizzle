@@ -1,6 +1,7 @@
 package main
 
 import (
+	"dizzle/commands"
 	"fmt"
 
 	"github.com/bwmarrin/discordgo"
@@ -15,6 +16,8 @@ func main() {
 	fmt.Println("Started Dizzle Bot: ", discord)
 
 	discord.AddHandler(messageCreate)
+
+	commands.CreateCommand("hello")
 }
 
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
