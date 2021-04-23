@@ -17,9 +17,7 @@ func Start() {
 	}
 	fmt.Println("Started Dizzle Bot: ", discord)
 
-	discord.AddHandler(messageCreate)
-
-	commands.CreateCommand("hello")
+	discord.AddHandler(commands.CreateCommand)
 }
 
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
