@@ -1,31 +1,17 @@
 package main
 
 import (
-	"dizzle/commands"
+	"dizzle/bot"
+	"dizzle/config"
 	"fmt"
-
-	"github.com/bwmarrin/discordgo"
 )
 
 func main() {
-	discord, err := discordgo.New("Bot" + "token")
+	err := config.ReadConfig()
 
 	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println("Started Dizzle Bot: ", discord)
-
-	discord.AddHandler(messageCreate)
-
-	commands.CreateCommand("hello")
-}
-
-func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
-	if m.Author.ID == s.State.User.ID {
+		fmt.Println(err.Error())
 		return
 	}
-
-	if m.Content == "ping" {
-		s.ChannelMessageSend(m.ChannelID, "pong!")
-	}
+	bot.Start()
 }
