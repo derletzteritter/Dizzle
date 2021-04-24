@@ -2,6 +2,7 @@ package commands
 
 import (
 	"dizzle/config"
+	"dizzle/utils"
 	"strings"
 
 	"github.com/bwmarrin/discordgo"
@@ -32,6 +33,7 @@ func CreateCommand(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 		if m.Content == "!ban" {
 			banMessage := "Banned user: " + m.Author.Mention()
+			utils.AddBan(m.Author.Username)
 
 			s.ChannelMessageSend(m.ChannelID, banMessage)
 		}
