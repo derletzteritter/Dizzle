@@ -3,6 +3,7 @@ package commands
 import (
 	"dizzle/config"
 	"dizzle/utils"
+	"fmt"
 	"strings"
 
 	"github.com/bwmarrin/discordgo"
@@ -39,11 +40,20 @@ func CreateCommand(s *discordgo.Session, m *discordgo.MessageCreate) {
 		}
 
 		if m.Content == "!avatar" {
+			reader, err := s.UserAvatarDecode(m.Member.User)
+
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+
 			result := discordgo.MessageEmbed{
-				Type:        "rich",
+				Type:        "r",
 				Title:       "Your avatar",
 				Color:       7,
 				Description: "Hello everyone",
+				Image: &discordgo.MessageEmbedImage{
+					URL: reader.Bounds().String(),
+				},
 			}
 
 			s.ChannelMessageSendEmbed(m.ChannelID, &result)
