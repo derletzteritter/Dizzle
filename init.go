@@ -3,7 +3,6 @@ package main
 import (
 	"dizzle/bot"
 	"dizzle/config"
-	"dizzle/database"
 	"fmt"
 )
 
@@ -15,6 +14,6 @@ func main() {
 		return
 	}
 
-	database.Start()
+	/* database.Start() */
 	bot.Start()
 }

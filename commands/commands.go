@@ -2,7 +2,6 @@ package commands
 
 import (
 	"dizzle/config"
-	"dizzle/utils"
 	"fmt"
 	"strings"
 
@@ -32,11 +31,15 @@ func CreateCommand(s *discordgo.Session, m *discordgo.MessageCreate) {
 			s.ChannelMessageSend(m.ChannelID, kickMessage)
 		}
 
-		if m.Content == "!ban" {
-			banMessage := "Banned user: " + m.Author.Mention()
-			utils.AddBan(m.Author.Username)
+		if m.Content === "!ban" {
 
-			s.ChannelMessageSend(m.ChannelID, banMessage)
+			ban := strings.SplitAfter(m.Content, " ")
+
+			fmt.Println(ban)
+			fmt.Println(m.Content)
+
+			/* s.GuildBanCreateWithReason(m.GuildID, ban) */
+
 		}
 
 		if m.Content == "!avatar" {
