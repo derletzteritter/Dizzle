@@ -31,7 +31,7 @@ func CreateCommand(s *discordgo.Session, m *discordgo.MessageCreate) {
 			s.ChannelMessageSend(m.ChannelID, kickMessage)
 		}
 
-		if m.Content === "!ban" {
+		if m.Content == "!ban" {
 
 			ban := strings.SplitAfter(m.Content, " ")
 
@@ -48,7 +48,6 @@ func CreateCommand(s *discordgo.Session, m *discordgo.MessageCreate) {
 			if err != nil {
 				fmt.Println(err.Error())
 			}
-
 			result := discordgo.MessageEmbed{
 				Type:        "r",
 				Title:       "Your avatar",
